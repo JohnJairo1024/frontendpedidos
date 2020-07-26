@@ -1,0 +1,59 @@
+<!-- Creación del formulario -->
+<br>
+<div class="row">
+    <div class="card col-3">
+        <div class="card-body">
+            <div [hidden]="submitted">
+                <form (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="categoria">Producto</label>
+                        <input type="text" class="form-control" id="nombreProducto" required
+                            [(ngModel)]="producto.nombreProducto" name="nombreProducto">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Referencia</label>
+                        <input type="text" class="form-control" id="referencia" required
+                            [(ngModel)]="producto.referencia" name="referencia">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Descripción</label>
+                        <input type="text" class="form-control" id="descripcion" required
+                            [(ngModel)]="producto.descripcion" name="descripcion">
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Creación de la tabla  -->
+    <div class="col-9">
+        <table id="cssTable" class="table">
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Referencia</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Opción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listaproducto">
+                    <td>{{item.nombreProducto}}</td>
+                    <td>{{item.referencia}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td>
+                        <button class="btn btn-success btn btn-space"
+                            [routerLink]="['/editarproducto', item.idProducto]">Editar</button>
+                        <button (click)="eliminarProducto(item.idProducto)"
+                            class="btn btn-danger btn btn-space">Borrar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
