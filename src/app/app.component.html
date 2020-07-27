@@ -14,10 +14,7 @@
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              Dashboard <span class="sr-only">(current)</span>
-            </a>
+            <a class="nav-link" [routerLink]="['/dashboard']" [routerLinkActive]="['active']">Dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/pedidos']" [routerLinkActive]="['active']">Pedidos</a>
@@ -43,26 +40,8 @@
       </div>
     </nav>
 
-
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <router-outlet></router-outlet>
-
-
-      <!-- canvas  
-      <div>
-        <div>
-          <div style="display: block">
-            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-              [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-            </canvas>
-          </div>
-          <button mat-button mat-raised-button color="primary" (click)="randomize()">Actualizar</button>
-        </div>
-      </div>-->
-
-
-      <br><br>
     </main>
   </div>
 </div>

@@ -8,12 +8,14 @@ import { ChartsModule } from 'ng2-charts';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { EditarPedidosComponent } from './components/editar-pedidos/editar-pedidos.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     PedidosComponent,
     ProductosComponent,
-    EditarPedidosComponent
+    EditarPedidosComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

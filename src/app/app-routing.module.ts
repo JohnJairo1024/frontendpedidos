@@ -3,10 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { EditarPedidosComponent } from './components/editar-pedidos/editar-pedidos.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '', pathMatch: 'full'
+    path: '', redirectTo: 'dashboard', pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
     path: 'pedidos',

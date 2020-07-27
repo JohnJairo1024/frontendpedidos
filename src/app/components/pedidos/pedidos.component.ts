@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidosService } from '../../services/pedidos.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Producto } from '../../producto';
+import { Producto } from '../../models/producto';
 
 
 
