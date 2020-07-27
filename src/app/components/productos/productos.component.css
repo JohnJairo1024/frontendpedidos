@@ -1,0 +1,43 @@
+#menu{
+    margin-bottom: 15px;
+}
+
+.active{
+    border-top: 2px solid orange;
+    background-color: gray;
+}
+
+.btn-space {
+    margin-right: 10px;
+}
+
+td 
+{
+    height: 50px; 
+    width: 50px;
+}
+
+#cssTable td 
+{
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.table .thead-dark th {
+    color: #fff;
+    /* background-color: #41303e; */
+    background-color: #336B87;
+    border-color: #454d55;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #763626;
+    border-color: #763626;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #07575B;
+    border-color: #90AFC5;
+}

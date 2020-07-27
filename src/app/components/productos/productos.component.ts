@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidosService } from 'src/app/services/pedidos.service';
-import * as XLSX from 'xlsx';
+import { ProductoService } from '../../services/producto.service';
+import swal from 'sweetalert2';
+import { Producto } from '../../models/producto';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-productos',
@@ -9,21 +12,68 @@ import * as XLSX from 'xlsx';
 })
 export class ProductosComponent implements OnInit {
 
-
+  idProducto: number;
+  producto: Producto = new Producto();
+  submitted = false;
   listaproducto: any = [];
-  nombreArchivo = 'pedidos.xlsx';
 
-  constructor(private pedidoService: PedidosService) { }
+  /**
+   * constructor
+   * @param productoService 
+   */
+  constructor(private productoService: ProductoService) { }
 
+  /**
+   * init
+   */
   ngOnInit(): void {
     this.recargarInformacionProducto();
+  }
+
+
+  /**
+   * submit
+   */
+  onSubmit() {
+    this.guardarProducto();
+    this.recargarInformacionProducto();
+  }
+
+  /**
+   * guardar el producto
+   */
+
+  guardarProducto() {
+    this.productoService.crearProducto(this.producto).subscribe(
+      (data: any) => {
+        console.log("guardar producto: ", data);
+        if (data.exitoso) {
+          Swal.fire({
+            icon: 'success',
+            title: data.mensaje,
+            confirmButtonText: "Aceptar",
+          });
+        }
+        if (!data.exitoso) {
+          Swal.fire({
+            icon: 'error',
+            title: data.mensaje,
+            confirmButtonText: "Aceptar",
+          });
+        }
+      },
+      (error) => {
+        console.log(error)
+      });
+
+
   }
 
   /**
    * recarga informacion de la lista de productos
    */
   recargarInformacionProducto() {
-    this.pedidoService.listaProductos().subscribe(
+    this.productoService.listaProductos().subscribe(
       (data) => {
         console.log("listaProductos: ", data)
         this.listaproducto = data;
@@ -34,14 +84,17 @@ export class ProductosComponent implements OnInit {
   }
 
   /**
-   * Exporta la informacion de los pedidos
+   * elimina productos
+   * @param id 
    */
-  exportexcel(): void {
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'pedido');
-    XLSX.writeFile(wb, this.nombreArchivo);
+  eliminarProducto(id: number) {
+    this.productoService.eliminarProducto(id)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.recargarInformacionProducto();
+        },
+        error => console.log(error));
   }
 
 }

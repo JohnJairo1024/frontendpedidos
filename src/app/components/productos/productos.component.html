@@ -1,36 +1,64 @@
+<!-- Creación del formulario -->
 <br>
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Compartir</button>
-            <button type="button" (click)="exportexcel()" class="btn btn-sm btn-outline-secondary">Exportar</button>
-        </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            Esta semana
-        </button>
-    </div>
-</div>
+<div class="row">
+    <div class="card col-3">
+        <div class="card-body">
+            <div [hidden]="submitted">
+                <form (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="categoria">No. Producto</label>
+                        <input type="text" class="form-control" id="idProducto" required
+                            [(ngModel)]="producto.idProducto" name="idProducto">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Producto</label>
+                        <input type="text" class="form-control" id="nombreProducto" required
+                            [(ngModel)]="producto.nombreProducto" name="nombreProducto">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Referencia</label>
+                        <input type="text" class="form-control" id="referencia" required
+                            [(ngModel)]="producto.referencia" name="referencia">
 
-<h2>Listado de productos</h2>
-<br><br>
-<div class="table-responsive">
-    <table id="excel-table" class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Producto</th>
-                <th>Referencia</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of listaproducto">
-                <td>{{item.idProducto}}</td>
-                <td>{{item.nombreProducto}}</td>
-                <td>{{item.referencia}}</td>
-                <td>{{item.descripcion}}</td>
-            </tr>
-        </tbody>
-    </table>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">Descripción</label>
+                        <input type="text" class="form-control" id="descripcion" required
+                            [(ngModel)]="producto.descripcion" name="descripcion">
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Creación de la tabla  -->
+    <div class="col-9">
+        <table id="cssTable" class="table">
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Referencia</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Opción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listaproducto">
+                    <td>{{item.nombreProducto}}</td>
+                    <td>{{item.referencia}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td>
+                        <button class="btn btn-success btn btn-space"
+                            [routerLink]="['/editarproducto', item.idProducto]">Editar</button>
+                        <button (click)="eliminarProducto(item.idProducto)"
+                            class="btn btn-danger btn btn-space">Borrar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

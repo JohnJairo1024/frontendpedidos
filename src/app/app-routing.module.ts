@@ -4,6 +4,7 @@ import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { EditarPedidosComponent } from './components/editar-pedidos/editar-pedidos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'productos',
     component: ProductosComponent
+  },
+  {
+    path: 'reportes',
+    component: ReportesComponent
   }
 ];
 
