@@ -11,23 +11,25 @@ export class PedidosService {
 
   constructor(private http: HttpClient) { }
 
-
-  getEmployee(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/producto/${id}`);
-  }
-
+  /**
+   * Lista pedidos
+   * @param producto 
+   */
   crearPedido(producto: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}/crearpedidos`, producto);
   }
 
-  updateEmployee(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/producto/${id}`, value);
+  /**
+   * Elimina pedido
+   * @param id 
+   */
+  eliminarPedido(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/pedidos/${id}`, { responseType: 'text' });
   }
 
-  eliminarProducto(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/producto/${id}`, { responseType: 'text' });
-  }
-
+  /**
+   * Lista pedidos
+   */
   listaPedidos(): Observable<any> {
     return this.http.get(`${this.baseUrl}/pedidos`);
   }

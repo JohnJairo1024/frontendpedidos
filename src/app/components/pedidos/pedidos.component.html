@@ -55,9 +55,7 @@
                     <td>{{item.estado}}</td>
                     <td>{{item.idProducto}}</td>
                     <td>
-                        <button class="btn btn-success btn btn-space"
-                            [routerLink]="['/editarproducto', item.idProducto]">Editar</button>
-                        <button (click)="eliminarProducto(item.idProducto)"
+                        <button (click)="eliminarPedido(item.idProducto)"
                             class="btn btn-danger btn btn-space">Borrar</button>
                     </td>
                 </tr>

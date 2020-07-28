@@ -41,3 +41,14 @@ td
     background-color: #07575B;
     border-color: #90AFC5;
 }
+
+/*------------- Validacion campos --------------*/
+
+.error{
+    color:#FF0000;
+}
+
+.validacion{
+    font-size: 12px;
+    font-style: italic;
+}

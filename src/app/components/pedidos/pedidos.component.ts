@@ -20,7 +20,8 @@ export class PedidosComponent implements OnInit {
   pedido: Pedido = new Pedido();
   submitted = false;
   listapedidos: any = [];
-  public infoAutomotoresRetirar: any = null;
+  
+  
 
   /**
    * constructor
@@ -90,8 +91,8 @@ export class PedidosComponent implements OnInit {
    * elimina productos
    * @param id 
    */
-  eliminarProducto(id: number) {
-    this.pedidoService.eliminarProducto(id)
+  eliminarPedido(id: number) {
+    this.pedidoService.eliminarPedido(id)
       .subscribe(
         data => {
           console.log(data);
