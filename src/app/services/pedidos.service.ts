@@ -28,8 +28,8 @@ export class PedidosService {
     return this.http.delete(`${this.baseUrl}/producto/${id}`, { responseType: 'text' });
   }
 
-  listaProductos(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/producto`);
+  listaPedidos(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/pedidos`);
   }
 
 }

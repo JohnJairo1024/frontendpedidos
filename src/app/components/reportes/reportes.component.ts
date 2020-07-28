@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidosService } from 'src/app/services/pedidos.service';
+import { ProductoService } from 'src/app/services/producto.service';
 import * as XLSX from 'xlsx';
 
 
@@ -13,7 +13,7 @@ export class ReportesComponent implements OnInit {
   listaproducto: any = [];
   nombreArchivo = 'pedidos.xlsx';
 
-  constructor(private pedidoService: PedidosService) { }
+  constructor(private productoService: ProductoService) { }
 
   ngOnInit(): void {
     this.recargarInformacionProducto();
@@ -23,7 +23,7 @@ export class ReportesComponent implements OnInit {
    * recarga informacion de la lista de productos
    */
   recargarInformacionProducto() {
-    this.pedidoService.listaProductos().subscribe(
+    this.productoService.listaProductos().subscribe(
       (data) => {
         console.log("listaProductos: ", data)
         this.listaproducto = data;

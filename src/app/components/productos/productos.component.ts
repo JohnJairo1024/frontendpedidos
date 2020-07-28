@@ -35,7 +35,6 @@ export class ProductosComponent implements OnInit {
    */
   onSubmit() {
     this.guardarProducto();
-    this.recargarInformacionProducto();
   }
 
   /**
@@ -60,6 +59,7 @@ export class ProductosComponent implements OnInit {
             confirmButtonText: "Aceptar",
           });
         }
+        this.recargarInformacionProducto();
       },
       (error) => {
         console.log(error)

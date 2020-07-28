@@ -5,5 +5,5 @@ export class Pedido {
     cantidad: string;
     fechaOrden: string;
     estado: string;
-    producto: Producto[];
+    idProducto: number;
 }

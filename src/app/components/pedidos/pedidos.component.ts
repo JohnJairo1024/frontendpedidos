@@ -19,7 +19,8 @@ export class PedidosComponent implements OnInit {
   producto: Producto = new Producto();
   pedido: Pedido = new Pedido();
   submitted = false;
-  listaproducto: any = [];
+  listapedidos: any = [];
+  public infoAutomotoresRetirar: any = null;
 
   /**
    * constructor
@@ -31,7 +32,7 @@ export class PedidosComponent implements OnInit {
    * init
    */
   ngOnInit(): void {
-    this.recargarInformacionProducto();
+    this.recargarInformacionPedido();
   }
 
 
@@ -40,21 +41,14 @@ export class PedidosComponent implements OnInit {
    */
   onSubmit() {
     this.guardarPedido();
-    this.recargarInformacionProducto();
+    //this.recargarInformacionPedido();
   }
 
   /**
    * guardar el producto
    */
   guardarPedido() {
-
-    // Seteamos el producto
-    let producto = new Producto();
-    producto.idProducto = this.numeroProducto;
-    let asignacionProducto = Object.assign(this.pedido, { producto });
-    console.log("JSON", JSON.stringify(asignacionProducto));
-    let datosJSON = JSON.stringify(asignacionProducto)
-    this.pedidoService.crearPedido(datosJSON).subscribe(
+    this.pedidoService.crearPedido(this.pedido).subscribe(
       (data: any) => {
         console.log("guardar Pedido: ", data);
         if (data.exitoso) {
@@ -71,6 +65,7 @@ export class PedidosComponent implements OnInit {
             confirmButtonText: "Aceptar",
           });
         }
+        this.recargarInformacionPedido();
       },
       (error) => {
         console.log(error)
@@ -80,11 +75,11 @@ export class PedidosComponent implements OnInit {
   /**
    * recarga informacion de la lista de productos
    */
-  recargarInformacionProducto() {
-    this.pedidoService.listaProductos().subscribe(
+  recargarInformacionPedido() {
+    this.pedidoService.listaPedidos().subscribe(
       (data) => {
-        console.log("listaProductos: ", data)
-        this.listaproducto = data;
+        console.log("listaPedidos: ", data)
+        this.listapedidos = data;
       },
       (error) => {
         console.log(error)
@@ -100,7 +95,7 @@ export class PedidosComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.recargarInformacionProducto();
+          this.recargarInformacionPedido();
         },
         error => console.log(error));
   }
