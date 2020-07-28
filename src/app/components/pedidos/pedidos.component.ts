@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidosService } from '../../services/pedidos.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Producto } from '../../models/producto';
+import { Pedido } from '../../models/pedido';
 
 
 
@@ -14,7 +15,9 @@ import { Producto } from '../../models/producto';
 export class PedidosComponent implements OnInit {
 
   id: number;
+  numeroProducto: number;
   producto: Producto = new Producto();
+  pedido: Pedido = new Pedido();
   submitted = false;
   listaproducto: any = [];
 
@@ -36,19 +39,42 @@ export class PedidosComponent implements OnInit {
    * submit
    */
   onSubmit() {
-    this.guardarProducto();
+    this.guardarPedido();
     this.recargarInformacionProducto();
   }
 
   /**
    * guardar el producto
    */
-  guardarProducto() {
-    this.pedidoService.crearProducto(this.producto)
-      .subscribe(
-        data => console.log(data),
-        error => console.log(error)
-      );
+  guardarPedido() {
+
+    // Seteamos el producto
+    let producto = new Producto();
+    producto.idProducto = this.numeroProducto;
+    let asignacionProducto = Object.assign(this.pedido, { producto });
+    console.log("JSON", JSON.stringify(asignacionProducto));
+    let datosJSON = JSON.stringify(asignacionProducto)
+    this.pedidoService.crearPedido(datosJSON).subscribe(
+      (data: any) => {
+        console.log("guardar Pedido: ", data);
+        if (data.exitoso) {
+          Swal.fire({
+            icon: 'success',
+            title: data.mensaje,
+            confirmButtonText: "Aceptar",
+          });
+        }
+        if (!data.exitoso) {
+          Swal.fire({
+            icon: 'error',
+            title: data.mensaje,
+            confirmButtonText: "Aceptar",
+          });
+        }
+      },
+      (error) => {
+        console.log(error)
+      });
   }
 
   /**

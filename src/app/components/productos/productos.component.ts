@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../../services/producto.service';
-import swal from 'sweetalert2';
 import { Producto } from '../../models/producto';
 import Swal from 'sweetalert2';
 
@@ -65,8 +64,6 @@ export class ProductosComponent implements OnInit {
       (error) => {
         console.log(error)
       });
-
-
   }
 
   /**

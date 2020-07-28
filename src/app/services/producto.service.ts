@@ -12,7 +12,7 @@ export class ProductoService {
   constructor(private http: HttpClient) { }
 
 
-  getEmployee(id: number): Observable<any> {
+  obtenerProducto(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/producto/${id}`);
   }
 
@@ -20,7 +20,7 @@ export class ProductoService {
     return this.http.post(`${this.baseUrl}/crearproducto`, producto);
   }
 
-  updateEmployee(id: number, value: any): Observable<Object> {
+  actualizarProducto(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/producto/${id}`, value);
   }
 

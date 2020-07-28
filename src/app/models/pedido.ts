@@ -1,7 +1,7 @@
 import { Producto } from '../models/producto';
 
 export class Pedido {
-    id: number;
+    idOrden: number;
     cantidad: string;
     fechaOrden: string;
     estado: string;

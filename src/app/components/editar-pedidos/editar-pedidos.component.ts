@@ -2,7 +2,7 @@ import { Producto } from '../../models/producto';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PedidosService } from './../../services/pedidos.service';
+import { ProductoService } from './../../services/producto.service';
 
 @Component({
   selector: 'app-editar-pedidos',
@@ -15,13 +15,13 @@ export class EditarPedidosComponent implements OnInit {
   producto: Producto;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private pedidosService: PedidosService) { }
+    private productoService: ProductoService) { }
 
   ngOnInit(): void {
     this.producto = new Producto();
 
     this.id = this.route.snapshot.params['id'];
-    this.pedidosService.getEmployee(this.id)
+    this.productoService.obtenerProducto(this.id)
       .subscribe(data => {
         console.log(data)
         this.producto = data;
@@ -30,15 +30,15 @@ export class EditarPedidosComponent implements OnInit {
       );
   }
 
-  updateEmployee() {
-    this.pedidosService.updateEmployee(this.id, this.producto)
+  actualizarProducto() {
+    this.productoService.actualizarProducto(this.id, this.producto)
       .subscribe(data => console.log(data), error => console.log(error));
     this.producto = new Producto();
     this.gotoList();
   }
 
   onSubmit() {
-    this.updateEmployee();
+    this.actualizarProducto();
   }
 
   gotoList() {

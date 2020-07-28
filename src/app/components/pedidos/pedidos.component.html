@@ -6,21 +6,25 @@
             <div [hidden]="submitted">
                 <form (ngSubmit)="onSubmit()">
                     <div class="form-group">
-                        <label for="categoria">Producto</label>
-                        <input type="text" class="form-control" id="nombreProducto" required
-                            [(ngModel)]="producto.nombreProducto" name="nombreProducto">
+                        <label for="categoria">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad" required [(ngModel)]="pedido.cantidad"
+                            name="cantidad">
                     </div>
                     <div class="form-group">
-                        <label for="categoria">Referencia</label>
-                        <input type="text" class="form-control" id="referencia" required
-                            [(ngModel)]="producto.referencia" name="referencia">
+                        <label for="categoria">fecha Orden</label>
+                        <input type="date" class="form-control" id="fechaOrden" required [(ngModel)]="pedido.fechaOrden"
+                            name="fechaOrden">
 
                     </div>
                     <div class="form-group">
-                        <label for="categoria">Descripción</label>
-                        <input type="text" class="form-control" id="descripcion" required
-                            [(ngModel)]="producto.descripcion" name="descripcion">
-
+                        <label for="categoria">Estado</label>
+                        <input type="text" class="form-control" id="estado" required [(ngModel)]="pedido.estado"
+                            name="estado">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria">No. Producto</label>
+                        <input type="number" class="form-control" id="estado" required [(ngModel)]="numeroProducto"
+                            name="estado">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Agregar</button>
@@ -35,9 +39,9 @@
         <table id="cssTable" class="table">
             <thead class="thead-dark text-center">
                 <tr>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Referencia</th>
-                    <th scope="col">Descripción</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">fecha Orden</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Opción</th>
                 </tr>
             </thead>
